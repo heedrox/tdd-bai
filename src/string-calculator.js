@@ -1,7 +1,7 @@
 class StringCalculator {
   add(numbers) {
     const nums = numbers.split(",");
-    return parseInt(nums[0]) + parseInt(nums[1]);
+    return nums.reduce((acc, curr) => acc + parseInt(curr), 0);
   }
 }
 

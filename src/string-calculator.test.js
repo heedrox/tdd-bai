@@ -13,4 +13,8 @@ describe('String calculator', () => {
         const stringCalculator = new StringCalculator()
         expect(stringCalculator.add("3,6")).toBe(9)
     })
+    test('must add three numbers', () => {
+        const stringCalculator = new StringCalculator()
+        expect(stringCalculator.add("3,6,2")).toBe(11)
+    })
 })

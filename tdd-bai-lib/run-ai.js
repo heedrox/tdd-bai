@@ -31,4 +31,5 @@ const content = openFile(filenameInput)
 
 queryGpt(content, openAiKey)
     .then((res) => writeFile(filenameOutput, res))
+    .then()
     .catch(err => console.error(err))

@@ -2,13 +2,19 @@
   "name": "tdd-ai",
   "version": "1.0.0",
   "description": "",
-  "main": "tdd-bai-lib/index.js",
+  "main": "tdd-bai-lib/run-ai.js",
   "scripts": {
+    "run-ai": "node tdd-bai-lib/run-ai.js",
     "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.3.1"
-  }
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "node-fetch": "^3.3.1"
+  },
+  "type": "module"
 }

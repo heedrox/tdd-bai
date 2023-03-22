@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import fs from 'fs'
 import { queryGpt } from './query-gpt-chat.js';
+import jest from 'jest'
 
 dotenv.config()
 const openAiKey = process.env.OPENAI_API_KEY
@@ -31,5 +32,5 @@ const content = openFile(filenameInput)
 
 queryGpt(content, openAiKey)
     .then((res) => writeFile(filenameOutput, res))
-    .then()
+    .then(() => jest.run())
     .catch(err => console.error(err))

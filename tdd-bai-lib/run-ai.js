@@ -8,6 +8,7 @@ const openAiKey = process.env.OPENAI_API_KEY
 
 const filenameInput = `./src/${process.argv[2]}.test.js`
 const filenameOutput = `./src/${process.argv[2]}.js`
+const filenameTmp = `./src/${process.argv[2]}.tmp.json`
 
 const openFile = (filename) => {
     try {
@@ -28,9 +29,20 @@ const writeFile = (filename, content) => {
     }
 }
 
+const readFile = (filename) => fs.readFileSync(filename)
+const removeFile = (filename) => fs.unlinkSync(filename)
+
 const content = openFile(filenameInput)
 
-queryGpt(content, openAiKey)
-    .then((res) => writeFile(filenameOutput, res))
-    .then(() => jest.run())
-    .catch(err => console.error(err))
+;(async () => {
+    try {
+        const gptRes = await queryGpt(content, openAiKey);
+        await writeFile(filenameOutput, gptRes)
+        await jest.run([filenameInput, "--bail=999", "--silent", "--json", `--outputFile=${filenameTmp}`])
+        const testResult = readFile(filenameTmp)
+        console.log(JSON.parse(testResult))
+        await removeFile(filenameTmp)
+    } catch (err) {
+        console.error('GENERAL ERROR', err)
+    }
+})()

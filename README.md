@@ -7,6 +7,7 @@ A proof of concept if we can use TDD BAI to develop something relatively complex
 - Download
 - If you use "nvm", then type "nvm use". If not, use node v18
 - `npm i`
+- Create a `.env` file and add the line `OPENAI_API_KEY=xxxxxx` with your own Open AI API key. Check how to get one here: https://www.windowscentral.com/software-apps/how-to-get-an-openai-api-key
 
 ## Example execution
 

@@ -46,8 +46,8 @@ const content = openFile(filenameInput)
         const parsedResults = JSON.parse(testResult.toString())
         if (!parsedResults.success ) {
             const message = stripAnsi(parsedResults.testResults[0].message)
-            const gptRes = await queryGpt([ fromUser(content), fromAssistant(message) ], openAiKey);
-            await writeFile(filenameOutput, gptRes)
+            const secondGptRes = await queryGpt([ fromUser(content), fromAssistant(gptRes), fromUser(message)  ], openAiKey);
+            await writeFile(filenameOutput, secondGptRes)
             await jest.run([filenameInput, "--bail=999", "--silent", "--json", `--outputFile=${filenameTmp}`])
         }
 

@@ -14,7 +14,7 @@ const doesItLookLikeSystemInstructions = (message) => {
   return percentageMatch >= 0.5;
 };
 
-export const queryGpt = async (prompt, openAiKey) => {
+export const queryGpt = async (prompts, openAiKey) => {
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "post",
     body: JSON.stringify({
@@ -23,7 +23,7 @@ export const queryGpt = async (prompt, openAiKey) => {
         {
           role: "system", content: ROLE_SYSTEM_INSTRUCTIONS,
         },
-        {role: "user", content: prompt},
+        ...prompts.map(p => ({role: p.role, content: p.content}))
       ],
       temperature: 0,
       max_tokens: 500,

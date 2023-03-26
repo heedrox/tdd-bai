@@ -1,13 +1,13 @@
 class StringCalculator {
-  add(numbers) {
-    const nums = numbers.split(",");
-    return nums.reduce((acc, curr) => acc + parseInt(curr), 0);
-  }
+    add(numbers) {
+        const nums = numbers.split(",").map(Number)
+        return nums.reduce((acc, curr) => acc + curr, 0)
+    }
 
-  substract(numbers) {
-    const nums = numbers.split(",");
-    return nums.reduce((acc, curr) => acc - parseInt(curr), 0);
-  }
+    substract(numbers) {
+        const nums = numbers.split(",").map(Number)
+        return nums.reduce((acc, curr) => acc - curr)
+    }
 }
 
-module.exports = StringCalculator;
+module.exports = StringCalculator

@@ -10,7 +10,6 @@ class BowlingGame {
   score() {
     let score = 0
     let rollIndex = 0
-
     for (let frameIndex = 0; frameIndex < 10; frameIndex++) {
       if (this.isStrike(rollIndex)) {
         score += 10 + this.strikeBonus(rollIndex)
@@ -23,7 +22,6 @@ class BowlingGame {
         rollIndex += 2
       }
     }
-
     return score
   }
 
